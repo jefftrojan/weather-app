@@ -54,7 +54,7 @@ function App() {
             <input
             type="text"
             className="search-bar"
-            placeholder="Search places"
+            placeholder="Enter name of city or country"
             onChange={e => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
@@ -89,7 +89,7 @@ function App() {
       </main>
       <div class="footer">
          <p>&copy; Made with &#9825; by <a href="https://dauda.studio" target="__blank"> Jeff Dauda</a> </p>
-         
+
       </div>
       
     </div>
@@ -97,3 +97,5 @@ function App() {
 }
 
 export default App;
+// how to connect to mongodb server?
+
