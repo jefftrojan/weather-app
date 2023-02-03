@@ -87,6 +87,10 @@ function App() {
 
           
       </main>
+      <div class="footer">
+         <p>&copy; Made with &#9825; by <a href="https://dauda.studio" target="__blank"> Jeff Dauda</a> </p>
+         
+      </div>
       
     </div>
   );
