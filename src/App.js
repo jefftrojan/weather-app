@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+
 
 const api = {
   key: "69461ea432de4e9adda482f185121ae0",
@@ -7,6 +8,26 @@ const api = {
 }
 
 function App() {
+
+
+  const [query, setQuery] = useState('');
+  const [weather, setWeather] = useState({});
+
+  // Function to get weather
+  const search = evt => {
+    if (evt.key==="Enter") {
+      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`) 
+        .then(res => res.json())
+        .then(result => { 
+          setWeather(result);
+          setQuery('');
+          console.log(result)
+          
+        });
+
+    }
+  }
+
 
   const dateGenerator = (d) => {
     let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -22,36 +43,49 @@ function App() {
     
   }
   return (
-    <div className="app">
+    <div className={
+      (typeof weather.main != "undefined") 
+        ? ((weather.main.temp >16) 
+          ? 'app warm'
+          :'app')
+    :'app' }>
       <main>
           <div className="search-box">
             <input
             type="text"
             className="search-bar"
             placeholder="Search places"
+            onChange={e => setQuery(e.target.value)}
+            value={query}
+            onKeyPress={search}
 
 
             >
             </input>
           </div>
-          <div>
-            <div className="location-box">
+          {(typeof weather.main != "undefined") ? (
+
+            <div>
+                          <div className="location-box">
               <div className="location">
-                Kigali, Rwanda
+                {weather.name}, {weather.sys.country}
               </div>
               <div className="date">{dateGenerator(new Date())}</div>
             </div>
 
             <div className="weather-box">
               <div className="temperature">
-                20 C
+                {Math.round(weather.main.temp)}°c
 
               </div>
               <div className="weather">
-                Sunny
+                {weather.weather[0].main}
               </div>
             </div>
-          </div>
+            </div>
+          ) : ('') }
+
+          
       </main>
       
     </div>
