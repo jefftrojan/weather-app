@@ -54,7 +54,7 @@ function App() {
             <input
             type="text"
             className="search-bar"
-            placeholder="Enter name of city or country"
+            placeholder="Enter name of place to view weather"
             onChange={e => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
@@ -97,5 +97,5 @@ function App() {
 }
 
 export default App;
-// how to connect to mongodb server?
+
 
